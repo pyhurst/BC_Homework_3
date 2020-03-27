@@ -9,24 +9,18 @@ var specialList = ['!','@','#','$','%','^','&','*','-','_','/',':',';','?','<','
 
 function generatePassword(){
   var passLengthPrompt = prompt('How many characters long do you want the password?');
-  // var lowerCaseConfirm = confirm('Would you like to include lowercase letters?');
-  // var upperCaseConfirm = confirm('Would you like to include uppercase letters?');
-  // var numConfirm = confirm('Would you like to include numbers?');
-  // var specialConfirm = confirm('Would you like to include special characters?');
-
   var createdPass = [];
   var finalPass = [];
 
   if(passLengthPrompt > 7 && passLengthPrompt < 129){
-    // var passLength = passLengthPrompt;
     var lowerCaseConfirm = confirm('Would you like to include lowercase letters?');
   } else {
     alert('Not a valid length. Must be 8-128 characters');
     return;
   }
+
   if(lowerCaseConfirm){
-    // createdPass.push(lowerCaseLetters);
-    // createdPass.concat(lowerCaseLetters);
+    // If confirmed, it will push each element of lowerCaseLetters array into the createdPass array
     for(i=0;i<lowerCaseLetters.length;i++){
       createdPass.push(lowerCaseLetters[i]);
     }
@@ -34,8 +28,8 @@ function generatePassword(){
   } else{
     var upperCaseConfirm = confirm('Would you like to include uppercase letters?');
   }
+
   if(upperCaseConfirm){
-    // createdPass.push(upperCaseLetters);
     for(i=0;i<upperCaseLetters.length;i++){
       createdPass.push(upperCaseLetters[i]);
     }
@@ -43,8 +37,8 @@ function generatePassword(){
   } else{
     var numConfirm = confirm('Would you like to include numbers?');
   }
+
   if(numConfirm){
-    // createdPass.push(numList);
     for(i=0;i<numList.length;i++){
       createdPass.push(numList[i]);
     }
@@ -52,8 +46,8 @@ function generatePassword(){
   } else {
     var specialConfirm = confirm('Would you like to include special characters?');
   }
+  
   if(specialConfirm){
-    // createdPass.push(specialList);
     for(i=0;i<specialList.length;i++){
       createdPass.push(specialList[i]);
     }
@@ -62,15 +56,18 @@ function generatePassword(){
     return generatePassword();
   }
 
+  // Transforms passLength from a string to a number
   var passLength = parseInt(passLengthPrompt);
   // console.log(passLength);
   // console.log(createdPass.length);
 
+  // Randomly generates an index to push random elements into a new array
   for(i=0;i<passLength;i++){
     randomIndex = Math.floor(Math.random()*createdPass.length);
     finalPass.push(createdPass[randomIndex]);
   }
 
+  // Joins the final array into a string
   var final = finalPass.join('');
 
   return final;
